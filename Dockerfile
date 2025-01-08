@@ -28,7 +28,7 @@ RUN cd /catkin_ws/src/gtsam && git checkout 686e16aaa && \
     cd /catkin_ws/src
 
 RUN echo 'source /opt/ros/noetic/setup.bash' >> ~/.bashrc
-RUN echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+RUN echo 'source /catkin_ws/devel/setup.bash' >> ~/.bashrc
 
 
 RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
