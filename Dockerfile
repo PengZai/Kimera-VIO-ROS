@@ -30,8 +30,6 @@ RUN cd /catkin_ws/src/gtsam && git checkout 686e16aaa && \
 RUN echo 'source /opt/ros/noetic/setup.bash' >> ~/.bashrc
 RUN echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 
-RUN cd /catkin_ws/src/mesh_rviz_plugins
-
 
 RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
     catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
