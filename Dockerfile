@@ -18,7 +18,7 @@ RUN apt-get install -y ros-noetic-image-pipeline ros-noetic-geometry ros-noetic-
 
 
 RUN mkdir -p /catkin_ws/src/
-RUN git clone https://github.com/PengZai/Kimera-VIO-ROS.git /catkin_ws/src/Kimera-VIO-ROS
+RUN git clone https://github.com/MIT-SPARK/Kimera-VIO-ROS.git /catkin_ws/src/Kimera-VIO-ROS
 RUN cd /catkin_ws/src/Kimera-VIO-ROS 
     # && git checkout ___
 RUN cd /catkin_ws/src/ && wstool init && \
