@@ -186,3 +186,46 @@ See the [documentation on hardware setup](docs/hardware_setup.md) for instructio
 
 # BSD License
 KimeraVIO ROS wrapper is open source under the BSD license, see the [LICENSE.BSD](./LICENSE.BSD) file.
+
+
+
+# docker
+
+```bash
+
+docker run --rm -e "DISPLAY=$DISPLAY" -e "QT_X11_NO_MITSHM=1" -e "XAUTHORITY=$XAUTH" -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" --ipc=host --network host --runtime=nvidia --gpus=all --privileged -it kimera-vio:noetic-ros
+
+# specify dataset path 
+docker run --rm  \
+  -e "DISPLAY=$DISPLAY"  \
+  -e "QT_X11_NO_MITSHM=1" \
+  -e "XAUTHORITY=$XAUTH"  \
+  -v "/tmp/.X11-unix:/tmp/.X11-unix:rw"  \
+  -v "/mnt/c/network_share/dataset:/dataset" \
+  --ipc=host  --network host  \
+  --runtime=nvidia --gpus=all  \
+  --privileged  \
+  -it kimera-vio:noetic-ros
+```
+
+
+# Bug
+
+/catkin_ws/src/gtsam/gtsam_unstable/discrete/examples/schedulingQuals13.cpp: In function ‘void runLargeExample()’:
+/catkin_ws/src/gtsam/gtsam_unstable/discrete/examples/schedulingQuals13.cpp:135:51: error: conversion from ‘gtsam::DiscreteFactor::shared_ptr’ {aka ‘std::shared_ptr<gtsam::DiscreteFactor>’} to non-scalar type ‘gtsam::DecisionTreeFactor’ requested
+  135 |     DecisionTreeFactor product = scheduler.product();
+      |                                  ~~~~~~~~~~~~~~~~~^~
+/catkin_ws/src/gtsam/gtsam_unstable/discrete/examples/schedulingQuals12.cpp: In function ‘void runLargeExample()’:
+/catkin_ws/src/gtsam/gtsam_unstable/discrete/examples/schedulingQuals12.cpp:111:51: error: conversion from ‘gtsam::DiscreteFactor::shared_ptr’ {aka ‘std::shared_ptr<gtsam::DiscreteFactor>’} to non-scalar type ‘gtsam::DecisionTreeFactor’ requested
+  111 |     DecisionTreeFactor product = scheduler.product();
+      |                                  ~~~~~~~~~~~~~~~~~^~
+/catkin_ws/src/gtsam/gtsam_unstable/discrete/examples/schedulingExample.cpp: In function ‘void runLargeExample()’:
+/catkin_ws/src/gtsam/gtsam_unstable/discrete/examples/schedulingExample.cpp:111:51: error: conversion from ‘gtsam::DiscreteFactor::shared_ptr’ {aka ‘std::shared_ptr<gtsam::DiscreteFactor>’} to non-scalar type ‘gtsam::DecisionTreeFactor’ requested
+  111 |     DecisionTreeFactor product = scheduler.product();
+      |                                  ~~~~~~~~~~~~~~~~~^~
+
+
+Solution:
+the bug is related to the problem of gtsam version
+cd src/gtsam
+git checkout 686e16aaa

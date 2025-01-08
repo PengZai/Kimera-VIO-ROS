@@ -13,16 +13,27 @@ RUN apt-get install -y ros-noetic-image-geometry ros-noetic-pcl-ros \
     # libtbb recommended for speed: \
     libtbb-dev
 
+# Build catkin workspace
+RUN apt-get install -y ros-noetic-image-pipeline ros-noetic-geometry ros-noetic-rviz
+
+
 RUN mkdir -p /catkin_ws/src/
-RUN git clone https://github.com/MIT-SPARK/Kimera-VIO-ROS.git /catkin_ws/src/Kimera-VIO-ROS
+RUN git clone https://github.com/PengZai/Kimera-VIO-ROS.git /catkin_ws/src/Kimera-VIO-ROS
 RUN cd /catkin_ws/src/Kimera-VIO-ROS 
     # && git checkout ___
 RUN cd /catkin_ws/src/ && wstool init && \
     wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall && wstool update
 
-# Build catkin workspace
-RUN apt-get install -y ros-noetic-image-pipeline ros-noetic-geometry ros-noetic-rviz
+RUN cd /catkin_ws/src/gtsam && git checkout 686e16aaa && \
+    cd /catkin_ws/src
+
+RUN echo 'source /opt/ros/noetic/setup.bash' >> ~/.bashrc
+RUN echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
+
+RUN cd /catkin_ws/src/mesh_rviz_plugins && \
+    git apply ubuntu_focal.patch
+
 
 RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
     catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    catkin build
+    catkin build -j4
