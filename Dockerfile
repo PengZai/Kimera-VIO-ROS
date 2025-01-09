@@ -1,5 +1,8 @@
 FROM ros:noetic-ros-base
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install -y ros-noetic-image-geometry ros-noetic-pcl-ros \
     ros-noetic-cv-bridge git cmake build-essential unzip pkg-config autoconf \
@@ -24,7 +27,7 @@ RUN cd /catkin_ws/src/Kimera-VIO-ROS
 RUN cd /catkin_ws/src/ && wstool init && \
     wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall && wstool update
 
-RUN cd /catkin_ws/src/gtsam && git checkout 686e16aaa && \
+RUN cd /catkin_ws/src/gtsam && git checkout tags/4.2 && \
     cd /catkin_ws/src
 
 RUN echo 'source /opt/ros/noetic/setup.bash' >> ~/.bashrc
@@ -32,5 +35,5 @@ RUN echo 'source /catkin_ws/devel/setup.bash' >> ~/.bashrc
 
 
 RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
-    catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    catkin build -j4
+    catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=Debug -DGTSAM_USE_SYSTEM_EIGEN=ON -DGTSAM_TANGENT_PREINTEGRATION=OFF && \
+    catkin build -j8

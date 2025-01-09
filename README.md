@@ -192,6 +192,8 @@ KimeraVIO ROS wrapper is open source under the BSD license, see the [LICENSE.BSD
 # docker
 
 ```bash
+#before you create container
+xhost +local:docker
 
 docker run --rm -e "DISPLAY=$DISPLAY" -e "QT_X11_NO_MITSHM=1" -e "XAUTHORITY=$XAUTH" -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" --ipc=host --network host --runtime=nvidia --gpus=all --privileged -it kimera-vio:noetic-ros
 
