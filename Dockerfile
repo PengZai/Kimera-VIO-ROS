@@ -1,5 +1,6 @@
 FROM ros:noetic-ros-base
 
+# To avoid tzdata asking for geographic location...
 ENV DEBIAN_FRONTEND=noninteractive
 
 
@@ -8,13 +9,17 @@ RUN apt-get install -y ros-noetic-image-geometry ros-noetic-pcl-ros \
     ros-noetic-cv-bridge git cmake build-essential unzip pkg-config autoconf \
     libboost-all-dev \
     libjpeg-dev libpng-dev libtiff-dev \
+    gdb \
+    libopencv-dev \
+    libopencv-contrib-dev \
+    libeigen3-dev \
     # Use libvtk5-dev, libgtk2.0-dev in ubuntu 16.04 \
     libvtk7-dev libgtk-3-dev \
     libatlas-base-dev gfortran \
     libparmetis-dev \
     python3-wstool python3-catkin-tools \
     # libtbb recommended for speed: \
-    libtbb-dev
+    libtbb-dev 
 
 # Build catkin workspace
 RUN apt-get install -y ros-noetic-image-pipeline ros-noetic-geometry ros-noetic-rviz
@@ -35,5 +40,15 @@ RUN echo 'source /catkin_ws/devel/setup.bash' >> ~/.bashrc
 
 
 RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
-    catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=Debug -DGTSAM_USE_SYSTEM_EIGEN=ON -DGTSAM_TANGENT_PREINTEGRATION=OFF && \
+    catkin init && \
+    catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release \
+    -DGTSAM_USE_SYSTEM_EIGEN=ON \
+    -DGTSAM_USE_SYSTEM_METIS=ON \
+    -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF \
+    -DGTSAM_BUILD_TESTS=OFF \
+    -DGTSAM_BUILD_EXAMPLES_ALWAYS=OFF \
+    -DGTSAM_BUILD_UNSTABLE=ON \
+    -DGTSAM_ROT3_EXPMAP=ON \
+    -DGTSAM_TANGENT_PREINTEGRATION=OFF && \
     catkin build -j8
+
