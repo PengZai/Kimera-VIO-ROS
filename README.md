@@ -1,3 +1,23 @@
+# setting - zhipeng
+
+```bash
+
+mkdir -p Kimera-VIO-ROS/catkin_ws/src
+cd Kimera-VIO-ROS/catkin_ws/src
+git clone git@github.com:PengZai/Kimera-VIO-ROS.git
+cd ../..
+
+# build image and enther container
+./catkin_ws/src/Kimera-VIO-ROS/scripts/run_dev.sh
+
+# when you create container, you should setup it at once
+./catkin_ws/src/Kimera-VIO-ROS/scripts/container_setup.bash
+# and build
+catkin build -j8
+```
+
+
+
 # Kimera-VIO-ROS
 
 ROS Wrapper for [Kimera](https://github.com/MIT-SPARK/Kimera).
