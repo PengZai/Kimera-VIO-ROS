@@ -204,6 +204,7 @@ docker run --rm  \
   -e "XAUTHORITY=$XAUTH"  \
   -v "/tmp/.X11-unix:/tmp/.X11-unix:rw"  \
   -v "/home/zhipeng/datasets:/datasets" \
+  -v ${HOME}/vscode_projects/Kimera-VIO-ROS
   --ipc=host  --network host  \
   --runtime=nvidia --gpus=all  \
   --privileged  \
