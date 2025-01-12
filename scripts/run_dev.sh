@@ -24,7 +24,7 @@ PROJECT_NAME=$(basename "$PWD")
 # fi
 
 
-docker build -t $IMAGE_NAME "$PROJECT_DIR/catkin_ws/src/$PROJECT_NAME"
+docker build -t $IMAGE_NAME -f "$HOME/vscode_projects/Kimera-VIO-ROS/catkin_ws/src/Kimera-VIO-ROS/" .
 
 xhost +local:docker
 
