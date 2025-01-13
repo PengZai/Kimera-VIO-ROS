@@ -23,7 +23,7 @@ file and include this one to launch KimeraVIO on the dataset of your choice -->
 
   <!-- If true, KimeraVIO will log output of all modules to the
        'log_output_path' location. -->
-  <arg name="log_output" default="false"/>
+  <arg name="log_output" default="true"/>
   <arg name="log_output_path"
        default="$(find kimera_vio_ros)/output_logs/"/>
   <!-- If true, log ground-truth poses to a csv file using the
@@ -33,7 +33,7 @@ file and include this one to launch KimeraVIO on the dataset of your choice -->
   <arg name="gt_topic"    default=""/>
 
   <!-- If true, KimeraVIO will enable the LoopClosureDetector module. -->
-  <arg name="use_lcd" default="false"/>
+  <arg name="use_lcd" default="true"/>
   <!-- If true, KimeraVIO will disable PGO for the LoopClosureDetector module. -->
   <arg name="lcd_no_optimize" default="false"/>
   <!-- If true, KimeraVIO will not call detection LoopClosureDetector module. -->
