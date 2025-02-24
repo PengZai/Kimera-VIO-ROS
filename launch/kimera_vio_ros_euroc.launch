@@ -28,7 +28,7 @@
   <arg name="visualize"         default="true"/>
 
   <!-- Change rosbag path if online argument is false -->
-  <arg name="rosbag_path" default="/root/datasets/Euroc_MAV/ros_bag/V1_03_difficult_modified.bag"
+  <arg name="rosbag_path" default="/root/datasets/Euroc_MAV/ros_bag/V2_01_easy_modified.bag"
     unless="$(arg online)"/>
 
   <!-- Frame IDs -->

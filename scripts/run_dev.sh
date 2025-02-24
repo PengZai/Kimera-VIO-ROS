@@ -3,7 +3,7 @@
 
 
 IMAGE_NAME="kimera-vio:noetic-ros"
-DATA_PATH="/media/zhipeng/zhipeng_usb/datasets"
+DATA_PATH="/media/${USER}/zhipeng_usb/datasets"
 # Pick up config image key if specified
 if [[ ! -z "${CONFIG_DATA_PATH}" ]]; then
     DATA_PATH=$CONFIG_DATA_PATH
@@ -28,7 +28,7 @@ docker build -t $IMAGE_NAME -f "$HOME/vscode_projects/Kimera-VIO-ROS/catkin_ws/s
 
 xhost +local:docker
 
-docker run --rm  \
+docker run  \
   -e "DISPLAY=$DISPLAY"  \
   -e "QT_X11_NO_MITSHM=1" \
   -e "XAUTHORITY=$XAUTH"  \
