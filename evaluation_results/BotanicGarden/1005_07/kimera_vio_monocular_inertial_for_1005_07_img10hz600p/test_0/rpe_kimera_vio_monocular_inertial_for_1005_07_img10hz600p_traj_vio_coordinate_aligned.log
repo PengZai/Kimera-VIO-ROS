@@ -1,0 +1,14 @@
+RPE w.r.t. translation part (m)
+for delta = 1 (frames) using consecutive pairs
+(not aligned)
+
+       max	14.043721
+      mean	0.447878
+    median	0.085255
+       min	0.000747
+      rmse	1.505300
+       sse	953.955506
+       std	1.437126
+
+Plot saved to BotanicGarden/1005_07/kimera_vio_monocular_inertial_for_1005_07_img10hz600p/test_0/2d_rpe_traj_vio_raw
+Plot saved to BotanicGarden/1005_07/kimera_vio_monocular_inertial_for_1005_07_img10hz600p/test_0/2d_rpe_traj_vio_map

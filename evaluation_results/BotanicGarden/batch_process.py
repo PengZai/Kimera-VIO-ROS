@@ -8,7 +8,11 @@ import shutil
 
 
 sequence_name = '1005_07'
-sensor_type = 'stereo_inertial'
+sensor_type = 'monocular_inertial'
+if sensor_type == 'monocular_inertial':
+    config_name = 'BotanicGardenMono'
+else:
+    config_name = 'BotanicGarden'
 filename_prefix = '_'.join(['kimera_vio', sensor_type,'for', sequence_name, 'img10hz600p'])
 
 if not os.path.exists(os.path.join(sequence_name, filename_prefix)):
@@ -30,8 +34,8 @@ keyframe_filename = '_'.join([filename_prefix, 'traj_pgo'])
 filename_suffix = '.csv'
 shutil.copy(os.path.join(sequence_name, camera_filename+filename_suffix), os.path.join(sequence_name, filename_prefix, current_testfolder_name, camera_filename+filename_suffix))
 shutil.copy(os.path.join(sequence_name, keyframe_filename+filename_suffix), os.path.join(sequence_name, filename_prefix, current_testfolder_name, keyframe_filename+filename_suffix))
-shutil.copytree(os.path.join('../../../Kimera-VIO/params', 'BotanicGarden'), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'config', 'params','BotanicGarden'))
-shutil.copytree(os.path.join('../../output_logs', 'BotanicGarden'), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'output_logs', 'BotanicGarden'))
+shutil.copytree(os.path.join('../../../Kimera-VIO/params', config_name), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'config', 'params',config_name))
+shutil.copytree(os.path.join('../../output_logs', config_name), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'output_logs', config_name))
 shutil.copy(os.path.join('../../launch','kimera_vio_ros_botanicgarden.launch' ), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'config', 'launch', 'kimera_vio_ros_botanicgarden.txt'))
 
 
@@ -55,9 +59,9 @@ shutil.copy(os.path.join('../../launch','kimera_vio_ros_botanicgarden.launch' ),
 
 # VLP16 in Xsens coordinates
 sensor_coordinate_transform_matrix_for_camera_frame = np.array([
-    [0.999678872580465,0.0252865664429322,0.00150422292234868,0.0584867781527745],  
-    [-0.0252723438960774,0.999649431893338,-0.0078025434141585,0.00840419966766332],  
-    [-0.00170103929405540,0.00776298237926191,0.99996789371916,0.168915521980526],  
+    [0.999678872580465,0.0252865664429322,0.00150422292234868,0],  
+    [-0.0252723438960774,0.999649431893338,-0.0078025434141585,0],  
+    [-0.00170103929405540,0.00776298237926191,0.99996789371916,0],  
     [0.0,0.0,0.0,1.0]
 ])
 
@@ -73,9 +77,9 @@ sensor_coordinate_transform_matrix_for_camera_frame = np.array([
 
 # VLP16 in Xsens coordinates
 sensor_coordinate_transform_matrix_for_key_frame = np.array([
-    [0.999678872580465,0.0252865664429322,0.00150422292234868,0.0584867781527745],  
-    [-0.0252723438960774,0.999649431893338,-0.0078025434141585,0.00840419966766332],  
-    [-0.00170103929405540,0.00776298237926191,0.99996789371916,0.168915521980526],  
+    [0.999678872580465,0.0252865664429322,0.00150422292234868,0],  
+    [-0.0252723438960774,0.999649431893338,-0.0078025434141585,0],  
+    [-0.00170103929405540,0.00776298237926191,0.99996789371916,0],  
     [0.0,0.0,0.0,1.0]
 ])
 # keep same

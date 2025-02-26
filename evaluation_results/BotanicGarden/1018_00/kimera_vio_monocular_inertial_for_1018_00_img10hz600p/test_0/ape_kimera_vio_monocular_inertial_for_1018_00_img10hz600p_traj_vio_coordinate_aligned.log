@@ -1,0 +1,13 @@
+APE w.r.t. translation part (m)
+(not aligned)
+
+       max	16.519345
+      mean	8.199201
+    median	9.753790
+       min	0.043147
+      rmse	9.914809
+       sse	7569.365374
+       std	5.574635
+
+Plot saved to BotanicGarden/1018_00/kimera_vio_monocular_inertial_for_1018_00_img10hz600p/test_0/2d_ape_traj_vio_raw
+Plot saved to BotanicGarden/1018_00/kimera_vio_monocular_inertial_for_1018_00_img10hz600p/test_0/2d_ape_traj_vio_map
